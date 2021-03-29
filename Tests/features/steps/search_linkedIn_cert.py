@@ -7,6 +7,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.select import Select
+from selenium.webdriver.common.keys import Keys
 from selenium.webdriver import ActionChains
 
 #logging
@@ -21,22 +22,25 @@ def step_access_main(context):
 
 @given('enter linkedIn in search engine')
 def step_search_linkedIn(context):
-     sleep(2)
-     WebDriverWait(context.driver, 20).until(expected_conditions.element_to_be_clickable((By.XPATH,"/html/body/div[1]/div/div[2]/div[2]/header/div/div[2]/div[1]/div[2]/div"))).click()
+    sleep(2)
+    WebDriverWait(context.driver, 20).until(expected_conditions.element_to_be_clickable((By.XPATH,"/html/body/div[1]/div/div[2]/div[2]/header/div/div[2]/div[1]/div[2]/div"))).click()
+
+    sleep(5)
+    input = context.driver.find_element(By.XPATH,"/html/body/div[1]/div/div[1]/div[2]/div[3]/div[2]/div/div[1]/div/div[1]/input")
+    sleep(2)
+    input.send_keys('linkedIn')
+    sleep(2)
+    input.send_keys(Keys.RETURN)
+
 
 @when('click the search botton')
 def step_click_search_linkedIn_button(context):
-    sleep(5)
-    WebDriverWait(context.driver, 20).until(expected_conditions.element_to_be_clickable((By.XPATH,"/html/body/div[1]/div/div[2]/div[2]/div[1]/section[6]/div[2]/div/div[7]/div/div/div/div/div/div/div/a/img"))).click()
-    
-    sleep(5)
-    WebDriverWait(context.driver, 20).until(expected_conditions.element_to_be_clickable((By.XPATH,"/html/body/div[1]/div/div[1]/div[2]/div[3]/div[2]/div/div[1]/div/div[1]/input"))).send_keys('linkedIn')
-    
-    sleep(5)
-    WebDriverWait(context.driver, 20).until(expected_conditions.element_to_be_clickable((By.XPATH,"/html/body/div[1]/div/div[1]/div[2]/div[3]/div[2]/div/div[1]/div/span[1]/div[1]"))).click()
-  
+    pass
 
-@then('tthere should show the result for linkedIn Cert')
+@then('there should show the result for linkedIn Cert')
 def check_linkedIn_cert_result(context):
-    sleep(5)
+    elem = context.driver.find_element(By.XPATH,"/html/body/div[1]/div/div/div[4]/div/div[2]/div/div")
+    context.assertNotEqual(str(elem.text), "linkedIn")
+
+
 
