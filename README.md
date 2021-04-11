@@ -1,4 +1,4 @@
-## Behave_Seleuium_Webdriver
+## Seleuium Webdriver Automation Test
 This repository is automation test using behave for selenium webdriver
 
 ## Setup local environment
