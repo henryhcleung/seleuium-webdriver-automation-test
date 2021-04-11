@@ -1,4 +1,5 @@
-# BDD_Behave_Seleuium
+## behave_seleuium_webdriver
+This repository is automation test using behave for selenium webdriver
 
 ## Setup local environment
    1. ```brew install python```
